@@ -12,3 +12,28 @@ def empty_spaces():
 
 def new_game():
     pass
+
+window = Tk()
+window.title("Tic-Tac-Toe")
+players = ["x","o"]
+
+player = random.choice(players)
+buttons = [[0,0,0],
+           [0,0,0],
+           [0,0,0]]
+
+label = Label(text=player + " turn", font=('consolas',40))
+label.pack(side="top")
+
+reset_button = Button(text="restart", font=('consolas',20), command = new_game)
+reset_button.pack(side="top")
+
+frame = Frame()
+frame.pack()
+
+for row in range(3):
+    for column in range(3):
+        buttons[row][column] = Button(frame, text="", font=('consolas',40), width=5, height=2,
+                                     command=lambda row=row, column=column: next_turn(row, column) )
+
+window.mainloop()
